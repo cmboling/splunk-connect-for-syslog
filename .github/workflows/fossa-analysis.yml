@@ -28,4 +28,17 @@ jobs:
       - uses: fossas/fossa-action@main 
         with:
           api-key: ${{secrets.FOSSA_API_KEY}}
+
+      - uses: fossas/fossa-action@main 
+        if: always()
+        with:
+          api-key: ${{secrets.FOSSA_API_KEY}}
           run-tests: true
+      
+      - name: Running FOSSA CLI
+        if: always()
+        run: |
+          curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/fossas/fossa-cli/master/install-latest.sh | bash
+          fossa --version
+          fossa test
+          
