@@ -33,6 +33,11 @@ jobs:
 #           fossa --version
 #           export=${{secrets.FOSSA_API_KEY}} fossa analyze --branch $GITHUB_REF
 
+      - name: Checking something
+        run: |
+          git branch
+          echo "branch checking" 
+          
       - uses: fossas/fossa-action@main 
         with:
           api-key: ${{secrets.FOSSA_API_KEY}}
