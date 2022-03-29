@@ -26,24 +26,24 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
       
-#       - name: Running FOSSA CLI
-#         if: always()
-#         run: |
-#           curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/fossas/fossa-cli/master/install-latest.sh | bash
-#           fossa --version
-#           export=${{secrets.FOSSA_API_KEY}} fossa analyze --branch $GITHUB_REF
-
-      - name: Checking something
-        run: |
-          git branch
-          echo "branch checking" 
-          
-      - uses: fossas/fossa-action@main 
-        with:
-          api-key: ${{secrets.FOSSA_API_KEY}}
-          
-      - uses: fossas/fossa-action@main 
+      - name: Running FOSSA CLI
         if: always()
-        with:
-          api-key: ${{secrets.FOSSA_API_KEY}}
-          run-tests: true
+        run: |
+          curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/fossas/fossa-cli/master/install-latest.sh | bash
+          fossa --version
+          fossa analyze --branch $GITHUB_REF
+          fossa test
+
+#       - name: Checking something
+#         run: |
+#           git branch
+#           echo "branch checking" 
+
+#       - uses: fossas/fossa-action@main 
+#         with:
+#           api-key: ${{env.FOSSA_API_KEY}}
+          
+#       - uses: fossas/fossa-action@main 
+#         with:
+#           api-key: ${{env.FOSSA_API_KEY}}
+#           run-tests: true
