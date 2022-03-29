@@ -43,6 +43,7 @@ jobs:
         if: always()
         with:
           api-key: ${{env.FOSSA_API_KEY}}
+          branch: $GITHUB_REF
 
       - uses: fossas/fossa-action@main 
         with:
